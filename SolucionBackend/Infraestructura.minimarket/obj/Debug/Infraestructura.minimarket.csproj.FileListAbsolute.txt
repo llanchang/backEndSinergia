@@ -1,0 +1,14 @@
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\Infraestructura.minimarket.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\Infraestructura.minimarket.pdb
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\obj\Debug\Infraestructura.minimarket.csproj.AssemblyReference.cache
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\obj\Debug\Infraestructura.minimarket.csproj.CoreCompileInputs.cache
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\obj\Debug\Infraestructura.minimarket.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\obj\Debug\Infraestructura.minimarket.pdb
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\Infraestructura.minimarket.dll.config
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\Dominio.minimarket.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\EntityFramework.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\Dominio.minimarket.pdb
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\EntityFramework.xml
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Adriana\source\repos\SolucionBackend\Infraestructura.minimarket\obj\Debug\Infraestructura.minimarket.csproj.CopyComplete

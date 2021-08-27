@@ -1,0 +1,6 @@
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\bin\Debug\Dominio.minimarket.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\bin\Debug\Dominio.minimarket.pdb
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\obj\Debug\Dominio.minimarket.csproj.CoreCompileInputs.cache
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\obj\Debug\Dominio.minimarket.dll
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\obj\Debug\Dominio.minimarket.pdb
+C:\Users\Adriana\source\repos\SolucionBackend\Dominio.minimarket\obj\Debug\Dominio.minimarket.csproj.AssemblyReference.cache

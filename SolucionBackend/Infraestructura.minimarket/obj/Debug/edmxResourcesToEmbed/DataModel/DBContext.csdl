@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SINERGIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tcategoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tcategoria" FromRole="tcategoria" ToRole="tproducto" />
+  </EntityType>
+  <EntityType Name="tmarca">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tmarca" FromRole="tmarca" ToRole="tproducto" />
+  </EntityType>
+  <EntityType Name="tproducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" />
+    <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="medidas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="cantidad" Type="Int32" Nullable="false" />
+    <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="marcaid" Type="Int32" Nullable="false" />
+    <Property Name="proveedorid" Type="Int32" Nullable="false" />
+    <Property Name="categoriaid" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tcategoria" Relationship="Self.FK_tproducto_tcategoria" FromRole="tproducto" ToRole="tcategoria" />
+    <NavigationProperty Name="tmarca" Relationship="Self.FK_tproducto_tmarca" FromRole="tproducto" ToRole="tmarca" />
+    <NavigationProperty Name="tproveedor" Relationship="Self.FK_tproducto_tproveedor" FromRole="tproducto" ToRole="tproveedor" />
+  </EntityType>
+  <EntityType Name="tproveedor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tproveedor" FromRole="tproveedor" ToRole="tproducto" />
+  </EntityType>
+  <Association Name="FK_tproducto_tcategoria">
+    <End Role="tcategoria" Type="Self.tcategoria" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tcategoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="categoriaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tproducto_tmarca">
+    <End Role="tmarca" Type="Self.tmarca" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tmarca">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="marcaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tproducto_tproveedor">
+    <End Role="tproveedor" Type="Self.tproveedor" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tproveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="proveedorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="SINERGIAEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tcategoria" EntityType="Self.tcategoria" />
+    <EntitySet Name="tmarca" EntityType="Self.tmarca" />
+    <EntitySet Name="tproducto" EntityType="Self.tproducto" />
+    <EntitySet Name="tproveedor" EntityType="Self.tproveedor" />
+    <AssociationSet Name="FK_tproducto_tcategoria" Association="Self.FK_tproducto_tcategoria">
+      <End Role="tcategoria" EntitySet="tcategoria" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tproducto_tmarca" Association="Self.FK_tproducto_tmarca">
+      <End Role="tmarca" EntitySet="tmarca" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tproducto_tproveedor" Association="Self.FK_tproducto_tproveedor">
+      <End Role="tproveedor" EntitySet="tproveedor" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+    <FunctionImport Name="consultaCategoria_SP" ReturnType="Collection(SINERGIAModel.consultaCategoria_SP_Result)" />
+    <FunctionImport Name="consultaMarca_SP" ReturnType="Collection(SINERGIAModel.consultaMarca_SP_Result)" />
+    <FunctionImport Name="consultaProductoTodo_SP" ReturnType="Collection(SINERGIAModel.consultaProductoTodo_SP_Result)" />
+    <FunctionImport Name="consultaProveedor_SP" ReturnType="Collection(SINERGIAModel.consultaProveedor_SP_Result)" />
+    <FunctionImport Name="consultarProducto_SP" ReturnType="Collection(SINERGIAModel.consultarProducto_SP_Result)">
+      <Parameter Name="idProducto" Mode="In" Type="Int32" />
+    </FunctionImport>
+  </EntityContainer>
+  <ComplexType Name="consultaCategoria_SP_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="consultaMarca_SP_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="consultaProductoTodo_SP_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="medidas" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="cantidad" Nullable="false" />
+    <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="descripcion1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion2" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="consultaProveedor_SP_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="direccion" Nullable="false" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="consultarProducto_SP_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="medidas" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="cantidad" Nullable="false" />
+    <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="0" />
+    <Property Type="String" Name="descripcion1" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="descripcion2" Nullable="false" MaxLength="50" />
+    <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+  </ComplexType>
+</Schema>

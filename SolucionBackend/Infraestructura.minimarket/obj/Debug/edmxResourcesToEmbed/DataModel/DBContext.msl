@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SINERGIAModelStoreContainer" CdmEntityContainer="SINERGIAEntities">
+    <EntitySetMapping Name="tcategoria">
+      <EntityTypeMapping TypeName="SINERGIAModel.tcategoria">
+        <MappingFragment StoreEntitySet="tcategoria">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tmarca">
+      <EntityTypeMapping TypeName="SINERGIAModel.tmarca">
+        <MappingFragment StoreEntitySet="tmarca">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tproducto">
+      <EntityTypeMapping TypeName="SINERGIAModel.tproducto">
+        <MappingFragment StoreEntitySet="tproducto">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="medidas" ColumnName="medidas" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="marcaid" ColumnName="marcaid" />
+          <ScalarProperty Name="proveedorid" ColumnName="proveedorid" />
+          <ScalarProperty Name="categoriaid" ColumnName="categoriaid" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tproveedor">
+      <EntityTypeMapping TypeName="SINERGIAModel.tproveedor">
+        <MappingFragment StoreEntitySet="tproveedor">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="consultaCategoria_SP" FunctionName="SINERGIAModel.Store.consultaCategoria_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SINERGIAModel.consultaCategoria_SP_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="consultaMarca_SP" FunctionName="SINERGIAModel.Store.consultaMarca_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SINERGIAModel.consultaMarca_SP_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="consultaProductoTodo_SP" FunctionName="SINERGIAModel.Store.consultaProductoTodo_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SINERGIAModel.consultaProductoTodo_SP_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="medidas" ColumnName="medidas" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+          <ScalarProperty Name="descripcion2" ColumnName="descripcion2" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="consultaProveedor_SP" FunctionName="SINERGIAModel.Store.consultaProveedor_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SINERGIAModel.consultaProveedor_SP_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="direccion" ColumnName="direccion" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="consultarProducto_SP" FunctionName="SINERGIAModel.Store.consultarProducto_SP">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SINERGIAModel.consultarProducto_SP_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="medidas" ColumnName="medidas" />
+          <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+          <ScalarProperty Name="precio" ColumnName="precio" />
+          <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+          <ScalarProperty Name="descripcion2" ColumnName="descripcion2" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping>

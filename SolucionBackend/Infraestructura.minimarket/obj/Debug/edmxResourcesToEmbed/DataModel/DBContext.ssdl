@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SINERGIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tcategoria">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tmarca">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tproducto">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="medidas" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="cantidad" Type="int" Nullable="false" />
+    <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="marcaid" Type="int" Nullable="false" />
+    <Property Name="proveedorid" Type="int" Nullable="false" />
+    <Property Name="categoriaid" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tproveedor">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tproducto_tcategoria">
+    <End Role="tcategoria" Type="Self.tcategoria" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tcategoria">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="categoriaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tproducto_tmarca">
+    <End Role="tmarca" Type="Self.tmarca" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tmarca">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="marcaid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tproducto_tproveedor">
+    <End Role="tproveedor" Type="Self.tproveedor" Multiplicity="1" />
+    <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tproveedor">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="tproducto">
+        <PropertyRef Name="proveedorid" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="consultaCategoria_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="consultaMarca_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="consultaProductoTodo_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="consultaProveedor_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="consultarProducto_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="idProducto" Type="int" Mode="In" />
+  </Function>
+  <EntityContainer Name="SINERGIAModelStoreContainer">
+    <EntitySet Name="tcategoria" EntityType="Self.tcategoria" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tmarca" EntityType="Self.tmarca" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tproducto" EntityType="Self.tproducto" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tproveedor" EntityType="Self.tproveedor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tproducto_tcategoria" Association="Self.FK_tproducto_tcategoria">
+      <End Role="tcategoria" EntitySet="tcategoria" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tproducto_tmarca" Association="Self.FK_tproducto_tmarca">
+      <End Role="tmarca" EntitySet="tmarca" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tproducto_tproveedor" Association="Self.FK_tproducto_tproveedor">
+      <End Role="tproveedor" EntitySet="tproveedor" />
+      <End Role="tproducto" EntitySet="tproducto" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
