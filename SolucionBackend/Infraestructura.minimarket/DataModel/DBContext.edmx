@@ -1,0 +1,364 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SINERGIAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tcategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tmarca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tproducto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="medidas" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cantidad" Type="int" Nullable="false" />
+          <Property Name="precio" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="marcaid" Type="int" Nullable="false" />
+          <Property Name="proveedorid" Type="int" Nullable="false" />
+          <Property Name="categoriaid" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tproveedor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_tproducto_tcategoria">
+          <End Role="tcategoria" Type="Self.tcategoria" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tcategoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="categoriaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tproducto_tmarca">
+          <End Role="tmarca" Type="Self.tmarca" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tmarca">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="marcaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tproducto_tproveedor">
+          <End Role="tproveedor" Type="Self.tproveedor" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tproveedor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="proveedorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="consultaCategoria_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="consultaMarca_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="consultaProductoTodo_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="consultaProveedor_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="consultarProducto_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="idProducto" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="SINERGIAModelStoreContainer">
+          <EntitySet Name="tcategoria" EntityType="Self.tcategoria" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tmarca" EntityType="Self.tmarca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tproducto" EntityType="Self.tproducto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tproveedor" EntityType="Self.tproveedor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tproducto_tcategoria" Association="Self.FK_tproducto_tcategoria">
+            <End Role="tcategoria" EntitySet="tcategoria" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tproducto_tmarca" Association="Self.FK_tproducto_tmarca">
+            <End Role="tmarca" EntitySet="tmarca" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tproducto_tproveedor" Association="Self.FK_tproducto_tproveedor">
+            <End Role="tproveedor" EntitySet="tproveedor" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SINERGIAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tcategoria">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tcategoria" FromRole="tcategoria" ToRole="tproducto" />
+        </EntityType>
+        <EntityType Name="tmarca">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tmarca" FromRole="tmarca" ToRole="tproducto" />
+        </EntityType>
+        <EntityType Name="tproducto">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="medidas" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cantidad" Type="Int32" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="marcaid" Type="Int32" Nullable="false" />
+          <Property Name="proveedorid" Type="Int32" Nullable="false" />
+          <Property Name="categoriaid" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tcategoria" Relationship="Self.FK_tproducto_tcategoria" FromRole="tproducto" ToRole="tcategoria" />
+          <NavigationProperty Name="tmarca" Relationship="Self.FK_tproducto_tmarca" FromRole="tproducto" ToRole="tmarca" />
+          <NavigationProperty Name="tproveedor" Relationship="Self.FK_tproducto_tproveedor" FromRole="tproducto" ToRole="tproveedor" />
+        </EntityType>
+        <EntityType Name="tproveedor">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tproducto" Relationship="Self.FK_tproducto_tproveedor" FromRole="tproveedor" ToRole="tproducto" />
+        </EntityType>
+        <Association Name="FK_tproducto_tcategoria">
+          <End Role="tcategoria" Type="Self.tcategoria" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tcategoria">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="categoriaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tproducto_tmarca">
+          <End Role="tmarca" Type="Self.tmarca" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tmarca">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="marcaid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tproducto_tproveedor">
+          <End Role="tproveedor" Type="Self.tproveedor" Multiplicity="1" />
+          <End Role="tproducto" Type="Self.tproducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tproveedor">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tproducto">
+              <PropertyRef Name="proveedorid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SINERGIAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tcategoria" EntityType="Self.tcategoria" />
+          <EntitySet Name="tmarca" EntityType="Self.tmarca" />
+          <EntitySet Name="tproducto" EntityType="Self.tproducto" />
+          <EntitySet Name="tproveedor" EntityType="Self.tproveedor" />
+          <AssociationSet Name="FK_tproducto_tcategoria" Association="Self.FK_tproducto_tcategoria">
+            <End Role="tcategoria" EntitySet="tcategoria" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tproducto_tmarca" Association="Self.FK_tproducto_tmarca">
+            <End Role="tmarca" EntitySet="tmarca" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tproducto_tproveedor" Association="Self.FK_tproducto_tproveedor">
+            <End Role="tproveedor" EntitySet="tproveedor" />
+            <End Role="tproducto" EntitySet="tproducto" />
+          </AssociationSet>
+          <FunctionImport Name="consultaCategoria_SP" ReturnType="Collection(SINERGIAModel.consultaCategoria_SP_Result)" />
+          <FunctionImport Name="consultaMarca_SP" ReturnType="Collection(SINERGIAModel.consultaMarca_SP_Result)" />
+          <FunctionImport Name="consultaProductoTodo_SP" ReturnType="Collection(SINERGIAModel.consultaProductoTodo_SP_Result)" />
+          <FunctionImport Name="consultaProveedor_SP" ReturnType="Collection(SINERGIAModel.consultaProveedor_SP_Result)" />
+          <FunctionImport Name="consultarProducto_SP" ReturnType="Collection(SINERGIAModel.consultarProducto_SP_Result)">
+            <Parameter Name="idProducto" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="consultaCategoria_SP_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="consultaMarca_SP_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="consultaProductoTodo_SP_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="medidas" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="descripcion1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="descripcion2" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="consultaProveedor_SP_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="direccion" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="consultarProducto_SP_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="descripcion" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="medidas" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="cantidad" Nullable="false" />
+          <Property Type="Decimal" Name="precio" Nullable="false" Precision="18" Scale="0" />
+          <Property Type="String" Name="descripcion1" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="descripcion2" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nombre" Nullable="false" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SINERGIAModelStoreContainer" CdmEntityContainer="SINERGIAEntities">
+          <EntitySetMapping Name="tcategoria">
+            <EntityTypeMapping TypeName="SINERGIAModel.tcategoria">
+              <MappingFragment StoreEntitySet="tcategoria">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tmarca">
+            <EntityTypeMapping TypeName="SINERGIAModel.tmarca">
+              <MappingFragment StoreEntitySet="tmarca">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tproducto">
+            <EntityTypeMapping TypeName="SINERGIAModel.tproducto">
+              <MappingFragment StoreEntitySet="tproducto">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="medidas" ColumnName="medidas" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="marcaid" ColumnName="marcaid" />
+                <ScalarProperty Name="proveedorid" ColumnName="proveedorid" />
+                <ScalarProperty Name="categoriaid" ColumnName="categoriaid" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tproveedor">
+            <EntityTypeMapping TypeName="SINERGIAModel.tproveedor">
+              <MappingFragment StoreEntitySet="tproveedor">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="consultaCategoria_SP" FunctionName="SINERGIAModel.Store.consultaCategoria_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SINERGIAModel.consultaCategoria_SP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="consultaMarca_SP" FunctionName="SINERGIAModel.Store.consultaMarca_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SINERGIAModel.consultaMarca_SP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="consultaProductoTodo_SP" FunctionName="SINERGIAModel.Store.consultaProductoTodo_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SINERGIAModel.consultaProductoTodo_SP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="medidas" ColumnName="medidas" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+                <ScalarProperty Name="descripcion2" ColumnName="descripcion2" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="consultaProveedor_SP" FunctionName="SINERGIAModel.Store.consultaProveedor_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SINERGIAModel.consultaProveedor_SP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="consultarProducto_SP" FunctionName="SINERGIAModel.Store.consultarProducto_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SINERGIAModel.consultarProducto_SP_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="medidas" ColumnName="medidas" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="descripcion1" ColumnName="descripcion1" />
+                <ScalarProperty Name="descripcion2" ColumnName="descripcion2" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
